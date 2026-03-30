@@ -30,7 +30,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   return (
     <>
       <div
-        className="content-container flex flex-col gap-8 py-6 "
+        className="content-container flex large:flex-row flex-col gap-8 py-6 "
         data-testid="product-container"
       >
         {/* 🖼️ Images (Top) */}
