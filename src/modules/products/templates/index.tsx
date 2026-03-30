@@ -1,8 +1,6 @@
 import React, { Suspense } from "react"
-
 import ImageGallery from "@modules/products/components/image-gallery"
 import ProductActions from "@modules/products/components/product-actions"
-// import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta"
 import ProductTabs from "@modules/products/components/product-tabs"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
@@ -32,19 +30,23 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   return (
     <>
       <div
-        className="content-container  flex flex-col small:flex-row small:items-start py-6 relative"
+        className="content-container flex flex-col gap-8 py-6 "
         data-testid="product-container"
       >
-        <div className="block w-full relative">
+        {/* 🖼️ Images (Top) */}
+        <div className="w-full">
           <ImageGallery images={images} />
         </div>
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
+
+        {/* 📦 Product Info */}
+        <div className="flex flex-col gap-6 w-full max-w-2xl">
           <ProductInfo product={product} />
-           <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-12">
+
+          {/* 🛒 Actions */}
           <Suspense
             fallback={
               <ProductActions
-                disabled={true}
+                disabled
                 product={product}
                 region={region}
               />
@@ -52,13 +54,15 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           >
             <ProductActionsWrapper id={product.id} region={region} />
           </Suspense>
-        </div>
+
+          {/* 📑 Tabs */}
           <ProductTabs product={product} />
         </div>
-       
       </div>
+
+      {/* 🔗 Related Products */}
       <div
-        className="content-container my-16 small:my-32"
+        className="content-container my-16 "
         data-testid="related-products-container"
       >
         <Suspense fallback={<SkeletonRelatedProducts />}>

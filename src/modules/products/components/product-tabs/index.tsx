@@ -12,7 +12,6 @@ type ProductTabsProps = {
 }
 
 const ProductTabs = ({ product }: ProductTabsProps) => {
-        {console.log(product)}
 
   const tabs = [
     {
